@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|c:\\users\\kosra\\onedrive\\skrivbord\\zerbarbershop\\backend\\zerbarbershop\\zerbarbershop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|solutionrelative:zerbarbershop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,20 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\Program.cs",
-              "RelativeDocumentMoniker": "ZerBarberShop\\Program.cs",
-              "ToolTip": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\Program.cs",
-              "RelativeToolTip": "ZerBarberShop\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T07:13:48.487Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             }
           ]
         }
