@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZerBarberShop.Data;
+using ZerBarberShop.Models;
 using ZerBarberShop.Models.DTO;
 
 namespace ZerBarberShop.Controllers
@@ -13,9 +15,12 @@ namespace ZerBarberShop.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
 
-        public AuthController(UserManager<IdentityUser> userManager)
+        private readonly DataContext _dataContext;
+
+        public AuthController(UserManager<IdentityUser> userManager, DataContext dataContext)
         {
             this.userManager = userManager;
+            _dataContext = dataContext;
         }
 
         // POST: /api/Auth/Register
@@ -45,6 +50,13 @@ namespace ZerBarberShop.Controllers
                         }
                     }
                 }
+                var newUser = new User
+                {
+                    Name = registerRequestDto.Username,
+                    Email = registerRequestDto.Email
+                };
+                _dataContext.Users.Add(newUser);
+                await _dataContext.SaveChangesAsync();
                 return Ok("User was registered! Please login.");
             }
             return BadRequest("Something went wrong");

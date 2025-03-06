@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,12 +15,24 @@ namespace ZerBarberShop
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Add DbContext
             builder.Services.AddDbContext<DataContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            //Adding services to the container.
+            // Add Identity
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultTokenProviders();
+
+            // Add Authentication & Authorization
+            builder.Services.AddAuthentication();
+            builder.Services.AddAuthorization();
+
+            // Add Controllers
             builder.Services.AddControllers();
+
+            // Add Swagger
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
@@ -38,6 +51,7 @@ namespace ZerBarberShop
 
             var app = builder.Build();
 
+            // Enable Swagger
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,13 +59,18 @@ namespace ZerBarberShop
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("swagger/v1/swagger.json", "ZerBarberShop API V1");
-                c.RoutePrefix = "";  //So swagger can load at root. (Localhost:5000)
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZerBarberShop API V1");
+                c.RoutePrefix = ""; // Loads Swagger at root (http://localhost:5000)
             });
 
+            // Middleware order matters!
             app.UseRouting();
+            app.UseAuthentication(); // ✅ Must be before UseAuthorization()
             app.UseAuthorization();
+
+            // Map Controllers
             app.MapControllers();
+
             app.Run();
         }
     }
