@@ -1,80 +1,65 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Win32;
 using ZerBarberShop.Data;
 using ZerBarberShop.Models;
 using ZerBarberShop.Models.DTO;
 
-namespace ZerBarberShop.Controllers
+namespace ZerBarberShop.controllers;
+
+
+[Route("api")]
+[ApiController]
+public class AuthController : Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    private readonly IUserRepository _repository;
+    // private readonly JwtService _jwtService;
+
+    public AuthController(IUserRepository repository)
     {
-        private readonly UserManager<IdentityUser> userManager;
+        _repository = repository;
+    }
 
-        private readonly DataContext _dataContext;
-
-        public AuthController(UserManager<IdentityUser> userManager, DataContext dataContext)
+    [HttpPost("register")]
+    public IActionResult Register(Register register)
+    {
+        var user = new Users
         {
-            this.userManager = userManager;
-            _dataContext = dataContext;
+            Username = register.Name,
+            Email = register.Email,
+            Password = BCrypt.Net.BCrypt.HashPassword(register.Password)
+        };
+
+        return Created("success", _repository.Create(user));
+    }
+
+    [HttpPost("login")]
+    public IActionResult Login(Login login)
+    {
+        var user = _repository.GetByEmail(login.Email);
+
+        if (user == null) return BadRequest(new { message = "Invalid Credentials" });
+
+        if (!BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
+        {
+            return BadRequest(new { message = "Invalid Credentials" });
         }
 
-        // POST: /api/Auth/Register
-        [HttpPost]
-        [Route("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterRequestDto registerRequestDto)
+        return Ok(new
         {
-            var identityUser = new IdentityUser
-            {
-                UserName = registerRequestDto.Username,
-                Email = registerRequestDto.Email // Now it should work
-            };
+            message = "success"
+        });
+    }
 
-            var identityResult = await userManager.CreateAsync(identityUser, registerRequestDto.Password);
 
-            if (identityResult.Succeeded)
-            {
-                // Add roles to this User
-                if (registerRequestDto.Roles?.Any() == true)
-                {
-                    foreach (var role in registerRequestDto.Roles)
-                    {
-                        var roleResult = await userManager.AddToRoleAsync(identityUser, role);
-                        if (!roleResult.Succeeded)
-                        {
-                            return BadRequest($"Failed to add role: {role}");
-                        }
-                    }
-                }
-                var newUser = new User
-                {
-                    Name = registerRequestDto.Username,
-                    Email = registerRequestDto.Email
-                };
-                _dataContext.Users.Add(newUser);
-                await _dataContext.SaveChangesAsync();
-                return Ok("User was registered! Please login.");
-            }
-            return BadRequest("Something went wrong");
-        }
+    [HttpPost("logout")]
+    public IActionResult Logout()
+    {
+        Response.Cookies.Delete("jwt");
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginDto)
+        return Ok(new
         {
-            var user = await userManager.FindByNameAsync(loginDto.Username);
-            if (user == null)
-                return Unauthorized("Invalid username or password");
-
-            var result = await userManager.CheckPasswordAsync(user, loginDto.Password);
-            if (!result)
-                return Unauthorized("Invalid username or password");
-
-            // Generate JWT token here
-            return Ok(new { Token = "generated-jwt-token" });
-        }
+            message = "success"
+        });
     }
 }
