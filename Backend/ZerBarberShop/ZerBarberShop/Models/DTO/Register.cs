@@ -1,7 +1,12 @@
-﻿namespace ZerBarberShop.Models.DTO;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-public class Login
+namespace ZerBarberShop.Models.DTO;
+
+public class Register
 {
-    public string Email { set; get; }
-    public string Password { set; get; }
+    [Required][EmailAddress] public string Email { get; set; }
+    [Required][MinLength(6)] public string Password { get; set; }
+    [Required][MinLength(6)] public string ConfirmPassword { get; set; }
+    public bool PasswordsMatch => Password == ConfirmPassword;
 }
