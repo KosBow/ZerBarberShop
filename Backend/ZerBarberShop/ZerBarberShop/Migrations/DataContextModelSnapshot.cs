@@ -17,6 +17,25 @@ namespace ZerBarberShop.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
+            modelBuilder.Entity("ZerBarberShop.Models.DTO.Availability", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.PrimitiveCollection<string>("TimeSlots")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Availabilities");
+                });
+
             modelBuilder.Entity("ZerBarberShop.Models.IdentityRole", b =>
                 {
                     b.Property<string>("RoleId")
@@ -104,6 +123,15 @@ namespace ZerBarberShop.Migrations
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("isAccepted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isCancelled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isPending")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

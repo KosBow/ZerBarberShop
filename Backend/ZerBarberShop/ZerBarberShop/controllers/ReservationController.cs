@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ZerBarberShop.Data;
 using ZerBarberShop.Data.Reservation;
 using ZerBarberShop.Models;
@@ -18,13 +20,19 @@ namespace ZerBarberShop.Controllers
             _context = context;
             _reservationUser = reservationUser;
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult CreateReservation(ReservationDTO reservationDto)
         {
             try
             {
-                var existingUser = _context.Users.FirstOrDefault(u => u.Id == reservationDto.UserId);
+                var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized(new { message = "Invalid token. Email not found." });
+                }
+
+                var existingUser = _context.Users.FirstOrDefault(u => u.Email == userEmail);
                 if (existingUser == null)
                 {
                     return BadRequest(new { message = "User not found" });
@@ -40,8 +48,10 @@ namespace ZerBarberShop.Controllers
                 {
                     UserId = existingUser.Id,
                     Email = existingUser.Email,
-                    Username = existingUser.UserName,
+                    Username = existingUser.UserName, 
                     Date = reservationDto.Date,
+                    isPending = true,
+                    isAccepted = false,
                 };
 
                 _context.Reservations.Add(newReservation);
@@ -55,6 +65,32 @@ namespace ZerBarberShop.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("user")]
+        public IActionResult ShowUserReservation()
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+    
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return Unauthorized(new { message = "Invalid token. Email not found." });
+            }
+
+            var userReservation = _context.Reservations.Where(e => e.Email == userEmail).ToList();
+
+            if (!userReservation.Any())
+            {
+                return NotFound(new { message = "User reservation not found" });
+            }
+
+            return Ok(userReservation);
+        }
+        
+        
+
+
+        
+        [Authorize(Policy = "AdminPolicy")]
         [HttpGet]
         public IActionResult GetAllReservations()
         {
@@ -62,7 +98,7 @@ namespace ZerBarberShop.Controllers
             var orderedReservations = allReservations
                 .OrderBy(r => r.Date)
                 .ThenBy(r => r.Username);
-            if (!allReservations.Any())
+            if (!allReservations.Any()) 
             {
                 return NotFound(new { message = "No reservations found for this email" });
             }
@@ -70,8 +106,72 @@ namespace ZerBarberShop.Controllers
             return Ok(orderedReservations);
         }
 
+
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeleteReservation(int id)
+        {
+            try
+            {
+                var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return Unauthorized(new { message = "Invalid token. Email not found." });
+                }
+
+                var existingReservation = _context.Reservations.FirstOrDefault(r => r.Id == id);
+                if (existingReservation == null)
+                {
+                    return NotFound(new { message = "Reservation not found" });
+                }
+
+     
+                var isAdmin = User.IsInRole("Admin");
+
+                if (isAdmin)
+                {
+            
+                    _context.Reservations.Remove(existingReservation);
+                }
+                else
+                {
+                 
+                    if (existingReservation.isAccepted)
+                    {
+                        return Forbid();
+                    }
+
+                    _context.Reservations.Remove(existingReservation);
+                }
+
+                _context.SaveChanges();
+                return Ok(new { message = "Reservation deleted successfully" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { error = e.Message });
+            }
+        }
+
+        
+        [HttpPatch("{id}/accept")]
+        public async Task<IActionResult> AcceptAppointment(int id)
+        {
+            var appointment = await _context.Reservations.FindAsync(id);
+            if (appointment == null) return NotFound();
+
+            appointment.isPending = false;
+            appointment.isAccepted = true;
+    
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Appointment accepted" });
+        }
+
+        
+        [Authorize(Policy = "AdminPolicy")]
+        [HttpPatch("{id}/cancel")]
+        public IActionResult CancelReservation(int id)
         {
             try
             {
@@ -81,14 +181,30 @@ namespace ZerBarberShop.Controllers
                     return NotFound(new { message = "Reservation not found" });
                 }
 
+         
+                if (existingReservation.isAccepted)
+                {
+                    existingReservation.isAccepted = false;
+                    existingReservation.isPending = false; 
+                    
+                    _context.SaveChanges();
+                    return Ok(new { message = "Reservation cancelled successfully." });
+                }
+        
+        
                 _context.Reservations.Remove(existingReservation);
                 _context.SaveChanges();
-                return Ok(new { message = "Reservation deleted successfully" });
+                return Ok(new { message = "Reservation deleted successfully." });
             }
             catch (Exception e)
             {
                 return BadRequest(new { error = e.Message });
             }
         }
+
+
+
+        
     }
+    
 }

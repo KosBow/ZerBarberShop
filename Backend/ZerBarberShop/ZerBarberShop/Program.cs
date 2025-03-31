@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZerBarberShop.Data;
 using ZerBarberShop.Data.Reservation;
+using ZerBarberShop.Models.DTO;
 using ZerBarberShop.Services.Jwt;
 using ZerBarberShop.Services.Security;
 using ZerBarberShop.Services.Users;
@@ -68,7 +69,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
-        builder.WithOrigins("http://localhost:3000")
+        builder.WithOrigins("http://localhost:3000", "http://localhost:3001", "http://localhost:3002")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials());
@@ -108,6 +109,7 @@ builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IJWTServices, JwtServices>();
 builder.Services.AddScoped<IReservationUser, ReservationUser>();
 builder.Services.AddScoped<PasswordManager>();
+builder.Services.AddScoped<Availability>();
 
 var app = builder.Build();
 

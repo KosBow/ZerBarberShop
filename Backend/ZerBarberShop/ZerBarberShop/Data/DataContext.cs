@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZerBarberShop.Models;
+using ZerBarberShop.Models.DTO;
 
 
 namespace ZerBarberShop.Data;
@@ -33,4 +34,6 @@ public class DataContext : DbContext
     public DbSet<IdentityUsers> Users { get; set; }
     public DbSet<IdentityRole> Roles { get; set; }
     public DbSet<Reservations> Reservations { get; set; }
+    
+    public DbSet<Availability> Availabilities { get; set; }
 }
