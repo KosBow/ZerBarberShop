@@ -6,7 +6,7 @@ A full-stack web application using **C# (.NET)** for the backend and **React** f
 
 - **Frontend**: React, JavaScript, HTML, CSS
 - **Backend**: C# (.NET Core Web API)
-- **Database**: [e.g., SQLite, SQL Server, PostgreSQL]
+- **Database**: SQLite
 - **Tooling**: Visual Studio Code, npm, Swagger (for API docs)
 
 ## 📦 Prerequisites
