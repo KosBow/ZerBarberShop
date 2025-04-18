@@ -11,7 +11,7 @@ using ZerBarberShop.Data;
 namespace ZerBarberShop.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250331144607_InitialCreate")]
+    [Migration("20250418145405_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

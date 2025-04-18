@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|c:\\users\\kosra\\onedrive\\skrivbord\\zerbarbershop\\backend\\zerbarbershop\\zerbarbershop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|solutionrelative:zerbarbershop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|c:\\users\\kosra\\onedrive\\skrivbord\\zerbarbershop\\backend\\zerbarbershop\\zerbarbershop\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|solutionrelative:zerbarbershop\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|c:\\users\\kosra\\onedrive\\skrivbord\\zerbarbershop\\backend\\zerbarbershop\\zerbarbershop\\models\\reservations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|solutionrelative:zerbarbershop\\models\\reservations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|c:\\users\\kosra\\onedrive\\skrivbord\\zerbarbershop\\backend\\zerbarbershop\\zerbarbershop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|solutionrelative:zerbarbershop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7F6BBB30-7C0C-4C99-965C-2D872A64C978}|ZerBarberShop\\ZerBarberShop.csproj|c:\\users\\kosra\\onedrive\\skrivbord\\zerbarbershop\\backend\\zerbarbershop\\zerbarbershop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -29,8 +29,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 327,
-          "SelectedChildIndex": 2,
+          "DockedHeight": 321,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,26 +38,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Reservations.cs",
               "DocumentMoniker": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\Models\\Reservations.cs",
               "RelativeDocumentMoniker": "ZerBarberShop\\Models\\Reservations.cs",
               "ToolTip": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\Models\\Reservations.cs",
               "RelativeToolTip": "ZerBarberShop\\Models\\Reservations.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T14:28:14.929Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T14:28:14.929Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "ZerBarberShop\\controllers\\ReservationController.cs",
               "ToolTip": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\controllers\\ReservationController.cs",
               "RelativeToolTip": "ZerBarberShop\\controllers\\ReservationController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAEwDQAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAADwv1YAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-16T03:31:50.861Z",
               "EditorCaption": ""
@@ -72,18 +71,17 @@
               "RelativeToolTip": "ZerBarberShop\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-16T03:14:15.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-16T03:14:15.189Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\Program.cs",
               "RelativeDocumentMoniker": "ZerBarberShop\\Program.cs",
               "ToolTip": "C:\\Users\\kosra\\OneDrive\\Skrivbord\\ZerBarberShop\\Backend\\ZerBarberShop\\ZerBarberShop\\Program.cs",
               "RelativeToolTip": "ZerBarberShop\\Program.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-16T03:08:23.288Z",
               "EditorCaption": ""
@@ -103,16 +101,12 @@
           ]
         },
         {
-          "DockedHeight": 73,
+          "DockedHeight": 79,
           "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Bookmark",
