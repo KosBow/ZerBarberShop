@@ -16,13 +16,13 @@ API endpoints, database integration, and ensuring accessibility.
 ![Home Page](./Frontend/public/screenshots/ZerBarberShop_Home.png)
 
 ### Services
-![Services](./Frontend/pbulic/screenshots/ZerBarberShop_Services.png)
+![Services](./Frontend/public/screenshots/ZerBarberShop_Services.png)
 
 ### Products
-![Products](./Frontend/screenshots/ZerBarberShop_Products.png)
+![Products](./Frontend/public/screenshots/ZerBarberShop_Products.png)
 
 ### Register
-![Register](./Frontend/screenshots/ZerBarberShop_Register.png)
+![Register](./Frontend/public/screenshots/ZerBarberShop_Register.png)
 
 ---
 
