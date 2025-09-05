@@ -16,7 +16,7 @@ API endpoints, database integration, and ensuring accessibility.
 ![Home Page](./Frontend/public/screenshots/ZerBarberShop_Home.png)
 
 ### Services
-![Services](./Frontend/screenshots/ZerBarberShop_Services.png)
+![Services](./Frontend/pbulic/screenshots/ZerBarberShop_Services.png)
 
 ### Products
 ![Products](./Frontend/screenshots/ZerBarberShop_Products.png)
