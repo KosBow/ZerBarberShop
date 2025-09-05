@@ -13,7 +13,7 @@ API endpoints, database integration, and ensuring accessibility.
 ## 🖼️ Screenshots
 
 ### Home
-![Home Page](./public/screenshots/ZerBarberShop_Home.png)
+![Home Page](./Frontend/public/screenshots/ZerBarberShop_Home.png)
 
 ### Services
 ![Services](./public/screenshots/ZerBarberShop_Services.png)
