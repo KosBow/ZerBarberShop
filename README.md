@@ -51,16 +51,20 @@ git clone https://github.com/your-username/ZerBarberShop.git
 cd ZerBarberShop
 ````
 
-Start the Backend (.NET)
+### 2. Start the Backend (.NET)
+````bash
 cd backend
 dotnet restore
 dotnet build
 dotnet run
+````
 
-Start the Frontend (React)
+### 3.Start the Frontend (React)
+````
 cd frontend
 npm install
 npm run dev
+````
 
 📌 Features
 
